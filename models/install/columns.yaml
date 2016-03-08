@@ -1,0 +1,28 @@
+columns:
+    id:
+        label: 'android.installs::lang.install.id'
+        type: number
+        searchable: true
+        sortable: true
+    instance_id:
+        label: 'android.installs::lang.install.instance_id'
+        type: text
+        searchable: true
+    device_id:
+        label: 'android.installs::lang.install.device_id'
+        type: text
+        searchable: true
+        sortable: true
+    manufacturer:
+        label: 'android.installs::lang.install.manufacturer'
+        type: text
+        searchable: true
+        sortable: true
+    model:
+        label: 'android.installs::lang.install.model'
+        type: text
+        searchable: true
+    created_at:
+        label: 'android.installs::lang.install.installed_on'
+        type: datetime
+        sortable: true
