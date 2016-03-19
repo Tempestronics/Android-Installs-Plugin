@@ -26,3 +26,8 @@ columns:
         label: 'android.installs::lang.install.installed_on'
         type: datetime
         sortable: true
+    updated_at:
+        label: 'android.installs::lang.install.last_opened_on'
+        type: datetime
+        searchable: false
+        sortable: true

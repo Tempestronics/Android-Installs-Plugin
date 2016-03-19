@@ -13,10 +13,11 @@ class Install extends Model
      * Validation
      */
     public $rules = [
+        'instance_id' => 'required'
     ];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'android_installs_installs';
+    public $table = 'android_installs';
 }

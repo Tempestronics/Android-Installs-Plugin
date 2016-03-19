@@ -13,5 +13,9 @@
         'model' => 'Model',
         'device_id' => 'Device ID',
         'installed_on' => 'Installed On',
+        'last_opened_on' => 'Last Opened On',
+    ],
+    'widgets' => [
+        'title_installs' => 'App Installs Overview',
     ],
 ];

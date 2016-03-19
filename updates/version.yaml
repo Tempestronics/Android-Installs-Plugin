@@ -1,5 +1,8 @@
 1.0.1:
-    - 'Initialize plugin.'
+    - Initialize plugin.
 1.0.2:
-    - 'Created table android_installs_installs'
-    - builder_table_create_android_installs_installs.php
+    - Created table android_installs
+    - create_android_installs_table.php
+1.0.3:
+    - Added reports widget to view app installs
+    - Minor Bug fixes

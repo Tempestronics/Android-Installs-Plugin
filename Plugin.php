@@ -1,5 +1,6 @@
 <?php namespace Android\Installs;
 
+use Backend;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -16,15 +17,50 @@ class Plugin extends PluginBase
             'name'        => 'android.installs::lang.plugin.name',
             'description' => 'android.installs::lang.plugin.description',
             'author'      => 'Android',
-            'icon'        => 'oc-icon-android'
+            'icon'        => 'oc-icon-android',
+            'homepage'    => 'tempestronics.com'
         ];
     }
 
-    public function registerComponents()
+    public function registerNavigation()
     {
+        return [
+            'android' => [
+                'label'       => 'android.installs::lang.plugin.android',
+                'url'         => Backend::url('android/installs/installs'),
+                'icon'        => 'icon-android',
+                'permissions' => ['android.*'],
+                'order'       => 500,
+
+                'sideMenu' => [
+                    'installs' => [
+                        'label'       => 'android.installs::lang.plugin.name',
+                        'icon'        => 'icon-user-plus',
+                        'url'         => Backend::url('android/installs/installs'),
+                        'permissions' => ['android.installs.view_installs']
+                    ]
+                ]
+            ]
+        ];
     }
 
-    public function registerSettings()
+    public function registerPermissions()
     {
+        return [
+            'android.installs.view_installs' => [
+                'label' => 'android.installs::lang.install.view_installs',
+                'tab' => 'android.installs::lang.plugin.full_name'
+            ]
+        ];
+    }
+
+    public function registerReportWidgets()
+    {
+        return [
+            'Android\Installs\ReportWidgets\InstallsOverview'=>[
+                'label'   => 'App Installs Overview',
+                'context' => 'dashboard'
+            ]
+        ];
     }
 }

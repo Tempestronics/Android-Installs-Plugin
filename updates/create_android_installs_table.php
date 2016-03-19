@@ -3,11 +3,11 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateAndroidInstallsInstalls extends Migration
+class CreateAndroidInstallsTable extends Migration
 {
     public function up()
     {
-        Schema::create('android_installs_installs', function($table)
+        Schema::create('android_installs', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
@@ -21,6 +21,6 @@ class BuilderTableCreateAndroidInstallsInstalls extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('android_installs_installs');
+        Schema::dropIfExists('android_installs');
     }
 }

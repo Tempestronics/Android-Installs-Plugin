@@ -1,10 +1,41 @@
-title: Installs
-modelClass: Android\Installs\Models\Install
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
 list: $/android/installs/models/install/columns.yaml
+
+# Model Class name
+modelClass: Android\Installs\Models\Install
+
+# List Title
+title: Installs
+
+# Message to display if the list is empty
 noRecordsMessage: 'backend::lang.list.no_records'
+
+# Records to display per page
+recordsPerPage: 30
+
+# Displays the list column set up button
 showSetup: true
-showCheckboxes: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+defaultSort:
+    column: created_at
+    direction: desc
+
+# Display checkboxes next to each record
+showCheckboxes: false
+
+# Toolbar widget configuration
 toolbar:
+    # Partial for toolbar buttons
     buttons: list_toolbar
+
+    # Search widget configuration
     search:
         prompt: 'backend::lang.list.search_prompt'
