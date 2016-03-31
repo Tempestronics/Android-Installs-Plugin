@@ -7,6 +7,7 @@
     ],
     'install' => [
         'id' => 'ID',
+        'install_id' => 'Install ID',
         'instance_id' => 'Instance ID',
         'view_installs' => 'Allow Viewing Installs',
         'manufacturer' => 'Manufacturer',

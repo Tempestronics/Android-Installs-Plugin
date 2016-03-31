@@ -13,15 +13,6 @@ columns:
         type: text
         searchable: true
         sortable: true
-    manufacturer:
-        label: 'android.installs::lang.install.manufacturer'
-        type: text
-        searchable: true
-        sortable: true
-    model:
-        label: 'android.installs::lang.install.model'
-        type: text
-        searchable: true
     created_at:
         label: 'android.installs::lang.install.installed_on'
         type: datetime

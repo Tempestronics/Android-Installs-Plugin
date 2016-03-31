@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    package:
+        label: The name of your package in play store
+        type: text
+        default: com.acme.android
+
+    extras:
+        label: Extra fields that you use.
+        commentAbove: You can specify the names of extra fields used.
+        default:
+          1:
+            name: manufacturer
+            showInList: 1
+          2:
+            name: model
+            showInList: 1
+        type: repeater
+        form:
+            fields:
+                name:
+                    label: Extra field name
+                    preset: name
+                    span: left
+
+                showInList:
+                    label: Show in backend list?
+                    containerAttributes:
+                        style: margin-top: 3%;
+                    type: switch
+                    span: right

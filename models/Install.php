@@ -13,7 +13,12 @@ class Install extends Model
      * Validation
      */
     public $rules = [
-        'instance_id' => 'required'
+        'instance_id' => 'required',
+        'device_id' => 'required'
+    ];
+
+    public $jsonable = [
+        'extras'
     ];
 
     /**

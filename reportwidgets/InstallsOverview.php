@@ -1,10 +1,10 @@
 <?php namespace Android\Installs\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
 use Exception;
+use Carbon\Carbon;
 use ApplicationException;
 use Android\Installs\Models\Install;
-use Carbon\Carbon;
+use Backend\Classes\ReportWidgetBase;
 
  /**
  * App Installs overview widget.
@@ -64,7 +64,7 @@ class InstallsOverview extends ReportWidgetBase
         foreach ($installs as $key => $value)
         {
             $point = [
-                strtotime($key) * 1000,
+                strtotime("+1 day", strtotime($key)) * 1000,
                 count($value)
             ];
             $points[] = $point;

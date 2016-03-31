@@ -6,3 +6,6 @@
 1.0.3:
     - Added reports widget to view app installs
     - Minor Bug fixes
+1.0.4:
+    - Added extras column and migrated existing data to it
+    - add_extras_column.php
