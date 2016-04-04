@@ -9,6 +9,19 @@ use Android\Installs\Models\Settings;
 class InstallUtils
 {
 
+  // This value is set when result is success
+  protected static $install;
+
+  public static function isSuccess()
+  {
+      return !is_null(self::$install);
+  }
+
+  // public static function getInstall()
+  // {
+  //   return self::$install;
+  // }
+
   public static function pushInstall($instance_id, $device_id, $extras = [])
   {
     if(!isset($instance_id) || empty($instance_id))
@@ -42,7 +55,8 @@ class InstallUtils
             if($install -> instance_id != $instance_id)
               Event::fire('android.installs.resetInstall', [$old_id, $install]);
 
-            return ['result' => 'success', 'reason' => 'existingInstall'];
+            self::$install = $install;
+            return ['result' => 'success', 'reason' => 'existing-install'];
           } catch(Exception $e) {}
       } else {
           try {
@@ -52,7 +66,9 @@ class InstallUtils
             $install -> extras = $extras;
             $install -> save();
             Event::fire('android.installs.newInstall', [$install]);
-            return ['result' => 'success', 'reason' => 'newInstall'];
+
+            self::$install = $install;
+            return ['result' => 'success', 'reason' => 'new-install'];
           } catch(Exception $e) {
             if($e -> getCode() == '23000')
               return ['result' => 'error', 'reason' => 'duplicate'];

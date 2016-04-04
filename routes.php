@@ -22,7 +22,7 @@ Route::post('android_install.json', function () {
         ];
       }
     else
-      $extras = json_decode(post('extras'));
+      $extras = json_decode(post('extras'), true);
 
     $result = InstallUtils::pushInstall($instance_id, $device_id, $extras);
     return Response::make(json_encode($result), 200, array('Content-Type' => 'application/json'));
