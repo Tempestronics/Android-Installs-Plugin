@@ -12,14 +12,16 @@ The following data is presently collected from the user device:
 
 **Device ID** - This is the [Android ID](http://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID) field that uniquely identifies a device. In practice, while tracking installs this field is ignored but there are many applications where having a unique device ID is better. For example, when you plan to promote your app via referrals with an incentive and want only unique installs to gain the incentive (it wouldn’t be good to have users get the incentive multiple times by re-installing the app). The current version of plugin enforces that if a different instance ID appears but with same device ID, then it replaces the instance ID with the new one and also generates a `android.installs.resetInstall` event with the old ID.
 
-**Manufacturer** - The user’s device [manufacturer](http://developer.android.com/reference/android/os/Build.html#MANUFACTURER).
-
-**Model** - The user’s device [model](http://developer.android.com/reference/android/os/Build.html#MODEL)
+**Extras** - Any extra data can be passed as an array. For example you can collect the user’s device [manufacturer](http://developer.android.com/reference/android/os/Build.html#MANUFACTURER), user’s device [model](http://developer.android.com/reference/android/os/Build.html#MODEL), Email ID, mobile number, location data, etc.
 
 ## Events ##
-**android.installs.newInstall** - This event is generated every time a new user install happens.
+**android.installs.newInstall** - This event is generated every time a new user launches the app. This can be used to identify fresh app installs.
+
+**android.installs.existingInstall** - This event is generated every time an existing user launches the app.
 
 **android.installs.resetInstall** - This event is generated every time a user re-installs the app. This can occur due to user clearing the app cache, resetting the phone or removing and installing the app again. The old instance ID is included in the event so that any action can be performed.
+
+Any event listeners can return values to these events in the array format **['result' => 'error', 'reason' = 'some-reason']**. If the return value has the result value as `error` the flow breaks out and returns the error which can be handled on the app side.
 
 ## API Responses ##
 The API generates a JSON response with the following fields:

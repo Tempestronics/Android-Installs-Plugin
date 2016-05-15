@@ -25,5 +25,20 @@ Route::post('android_install.json', function () {
       $extras = json_decode(post('extras'), true);
 
     $result = InstallUtils::pushInstall($instance_id, $device_id, $extras);
+
+    if(InstallUtils::isSuccess())
+      {
+        $responses = Event::fire('android.installs.postVerifyInstall', [InstallUtils::getInstall()]);
+        //if(isset($response[0]['result']))
+        foreach($responses as $response)
+          {
+            if(isset($response['result']) && $response['result'] == 'error')
+              {
+                $result = $response;
+                break;
+              }
+          }
+      }
+
     return Response::make(json_encode($result), 200, array('Content-Type' => 'application/json'));
 });

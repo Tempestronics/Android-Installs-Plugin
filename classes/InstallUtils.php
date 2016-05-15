@@ -9,7 +9,7 @@ use Android\Installs\Models\Settings;
 class InstallUtils
 {
 
-  // This value is set when result is success
+  // This value is set when result is success, otherwise null
   protected static $install;
 
   public static function isSuccess()
@@ -17,10 +17,10 @@ class InstallUtils
       return !is_null(self::$install);
   }
 
-  // public static function getInstall()
-  // {
-  //   return self::$install;
-  // }
+  public static function getInstall()
+  {
+    return self::$install;
+  }
 
   public static function pushInstall($instance_id, $device_id, $extras = [])
   {
@@ -55,6 +55,13 @@ class InstallUtils
             if($install -> instance_id != $instance_id)
               Event::fire('android.installs.resetInstall', [$old_id, $install]);
 
+            $existingInstallResponses = Event::fire('android.installs.existingInstall', [$install]);
+            foreach($existingInstallResponses as $existingInstallResponse)
+              {
+                if(isset($existingInstallResponse['result']) && $existingInstallResponse['result'] == "error")
+                  return $existingInstallResponse;
+              }
+
             self::$install = $install;
             return ['result' => 'success', 'reason' => 'existing-install'];
           } catch(Exception $e) {}
@@ -65,7 +72,12 @@ class InstallUtils
             $install -> device_id = $device_id;
             $install -> extras = $extras;
             $install -> save();
-            Event::fire('android.installs.newInstall', [$install]);
+            $newInstallResponses = Event::fire('android.installs.newInstall', [$install]);
+            foreach($newInstallResponses as $newInstallResponse)
+              {
+                if(isset($newInstallResponse['result']) && $newInstallResponse['result'] == "error")
+                  return $newInstallResponse;
+              }
 
             self::$install = $install;
             return ['result' => 'success', 'reason' => 'new-install'];
